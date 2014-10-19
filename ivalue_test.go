@@ -14,27 +14,47 @@ func (*concrete) Dummy() {
 	// noop
 }
 
-type concreteInterface struct {
-	concrete
+type concreteTwoFields struct {
+	name  string
+	value string
+}
+
+func (*concreteTwoFields) Dummy() {
+	// noop
+}
+
+type concreteInterfaceField struct {
+	name  string
 	value interface{}
 }
 
-func BenchmarkConcreteAssignment(b *testing.B) {
+func (*concreteInterfaceField) Dummy() {
+	// noop
+}
+
+func BenchmarkIValueConcreteAssgn(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = &concrete{}
 	}
 }
 
-func BenchmarkIValueAssignment(b *testing.B) {
+func BenchmarkIValueInterfaceAssgn(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var d dummier = &concrete{}
 		_ = d
 	}
 }
 
-func BenchmarkIValueWithInterfaceFieldAssignment(b *testing.B) {
+func BenchmarkIValueInterfaceTwoFieldsAssgn(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		var d dummier = &concreteInterface{}
+		var d dummier = &concreteTwoFields{}
+		_ = d
+	}
+}
+
+func BenchmarkIValueInterfaceInterfaceFieldsAssgn(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		var d dummier = &concreteInterfaceField{}
 		_ = d
 	}
 }
