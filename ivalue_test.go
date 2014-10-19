@@ -45,6 +45,13 @@ func BenchmarkIValueInterfaceAssgn(b *testing.B) {
 	}
 }
 
+func BenchmarkIValueEmptyInterfaceAssgn(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		var d interface{} = &concrete{}
+		_ = d
+	}
+}
+
 func BenchmarkIValueInterfaceTwoFieldsAssgn(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var d dummier = &concreteTwoFields{}
