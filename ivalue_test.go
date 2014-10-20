@@ -28,21 +28,92 @@ func (*concrete) Dummy() {
 	// noop
 }
 
-type concreteTwoFields struct {
-	name  string
-	value string
+// TODO: moredummier requires more diverse method names.
+
+type moredummier interface {
+	Dummy1()
+	Dummy2()
+	Dummy3()
+	Dummy4()
+	Dummy5()
+	Dummy6()
+	Dummy7()
+	Dummy8()
+	Dummy9()
+	Dummy10()
+	Dummy11()
+	Dummy12()
+	Dummy13()
+	Dummy14()
+	Dummy15()
+	Dummy16()
 }
 
-func (*concreteTwoFields) Dummy() {
+type concreteMore struct {
+	name string
+}
+
+func (*concreteMore) Dummy1() {
 	// noop
 }
 
-type concreteInterfaceField struct {
-	name  string
-	value interface{}
+func (*concreteMore) Dummy2() {
+	// noop
 }
 
-func (*concreteInterfaceField) Dummy() {
+func (*concreteMore) Dummy3() {
+	// noop
+}
+
+func (*concreteMore) Dummy4() {
+	// noop
+}
+
+func (*concreteMore) Dummy5() {
+	// noop
+}
+
+func (*concreteMore) Dummy6() {
+	// noop
+}
+
+func (*concreteMore) Dummy7() {
+	// noop
+}
+
+func (*concreteMore) Dummy8() {
+	// noop
+}
+
+func (*concreteMore) Dummy9() {
+	// noop
+}
+
+func (*concreteMore) Dummy10() {
+	// noop
+}
+
+func (*concreteMore) Dummy11() {
+	// noop
+}
+
+func (*concreteMore) Dummy12() {
+	// noop
+}
+
+func (*concreteMore) Dummy13() {
+	// noop
+}
+
+func (*concreteMore) Dummy14() {
+	// noop
+}
+
+func (*concreteMore) Dummy15() {
+	// noop
+}
+
+func (*concreteMore) Dummy16() {
 	// noop
 }
 
@@ -66,16 +137,9 @@ func BenchmarkIValueEmptyInterfaceAssgn(b *testing.B) {
 	}
 }
 
-func BenchmarkIValueInterfaceTwoFieldsAssgn(b *testing.B) {
+func BenchmarkIValueConcreteMoreAssgn(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		var d dummier = &concreteTwoFields{}
-		_ = d
-	}
-}
-
-func BenchmarkIValueInterfaceInterfaceFieldsAssgn(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		var d dummier = &concreteInterfaceField{}
+		var d moredummier = &concreteMore{}
 		_ = d
 	}
 }
